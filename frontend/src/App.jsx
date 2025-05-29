@@ -246,8 +246,7 @@ function App() {
         />
       </form>
 
-      {/* Job Listings Section */}
-      <div className="w-screen pr-80">
+      <div className="w-full max-w-full overflow-x-hidden px-4">
         {isLoading ? (
           <div className="text-center py-10">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#8618DD] mx-auto"></div>
@@ -264,12 +263,10 @@ function App() {
             </button>
           </div>
         ) : totalJobs === 0 ? (
-          // No jobs in database at all
           <div className="text-center py-10">
             <p className="text-gray-600">No jobs found in the database.</p>
           </div>
         ) : jobs.length === 0 && totalJobs > 0 ? (
-          // Jobs exist in DB but filtered to zero results
           <div className="text-center py-10">
             <p className="text-gray-600">No jobs found matching your criteria.</p>
             <button
@@ -280,10 +277,9 @@ function App() {
             </button>
           </div>
         ) : (
-          // Jobs found, display them
           <>
-            {/* Job Cards Grid */}
-            <div className="w-full grid grid-cols-4 gap-3">
+            {/* Job Cards Grid - Responsive grid */}
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
               {jobs.map(job => (
                 <div
                   key={job._id}
@@ -321,7 +317,7 @@ function App() {
                       <svg width="13" height="13" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-1 flex-shrink-0">
                         <path d="M18.1728 10.0001L9.99096 15.4546L1.80914 10.0001M18.1728 13.6365L9.99096 19.091L1.80914 13.6365M18.1728 6.36373L9.99096 11.8183L1.80914 6.36373L9.99096 0.90918L18.1728 6.36373Z" stroke="#5A5A5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
-                      <span className="whitespace-nowrap">₹{(job.minSalary / 100000).toFixed(1)}LPA</span>
+                      <span className="whitespace-nowrap">â‚¹{(job.minSalary / 100000).toFixed(0)} LPA</span>
                     </div>
 
                     <div className="flex items-center">
